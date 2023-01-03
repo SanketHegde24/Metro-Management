@@ -1,0 +1,16 @@
+.complaints {
+    padding: 30pt;
+    /* background-color: #eee; */
+    /* padding-top: 0%; */
+}
+.feedback {
+    padding: 30pt;
+    /* padding-top: 0% ; */
+}
+.card-title{
+    margin:auto;
+    padding:15px;
+    background-color: #2f7fad;
+    color: white;
+    width:30%;
+  }

@@ -1,0 +1,22 @@
+.body {
+    background-color: #eee;
+}
+.card-body {
+    align-items: center;
+    padding-bottom: 0%;
+}
+.form-label {
+    font-weight: bold;
+}
+.card {
+    width: 600pt;
+}
+.d-flex {
+    margin-bottom: 15px;
+    /* margin-top: 10px; */
+    /* align-self: center; */
+}
+.screenshot {
+    text-align: left;
+    float: left;
+}

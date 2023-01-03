@@ -1,0 +1,13 @@
+.body {
+    background-color: #eee;
+}
+.card-body {
+    align-items: center;
+    padding-bottom: 0%;
+}
+.form-label {
+    font-weight: bold;
+}
+.card {
+    width: 600pt;
+}
