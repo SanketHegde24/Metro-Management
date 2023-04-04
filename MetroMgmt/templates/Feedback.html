@@ -1,0 +1,121 @@
+{% extends 'Basic.html' %}
+
+{% block title %}Feedback{% endblock  %}
+
+{% block css %}
+.Loginbtn a{
+  display: none;
+}
+.nav-link {
+  display: none;
+}
+.card-body {
+  align-items: center;
+  padding-bottom: 0%;
+}
+.form-label {
+  font-weight: bold;
+}
+.card {
+  width: 600pt;
+}
+.d-flex {
+  margin-bottom: 15px;
+  /* margin-top: 10px; */
+  /* align-self: center; */
+}
+.screenshot {
+  text-align: left;
+  float: left;
+}
+
+.Main {
+  background-color: aliceblue;
+  padding: 5%;
+  /* background-color: powderblue; */
+  /* border-radius: 5px; */
+}
+.card1 {
+  height: min-content;
+  width: 75%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 100px;
+  border-radius: 5px;
+  background-color: white;
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  text-align: center;
+  padding: 2px 16px;
+}
+
+{% endblock  %}
+
+{% block body %}
+<section>
+  <div class="container my-5 py-5">
+    <div class="row d-flex justify-content-center">
+      <div>
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-start align-items-center" style="margin-left: 10pt">
+              <img class="rounded-circle shadow-1-strong me-3"
+                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="avatar" width="60"
+                height="60" />
+              <div style="margin-left: 10pt">
+                <h6 class="fw-bold text-primary mb-1">{{ request.user.username }}</h6>
+                <p class="text-muted small mb-0">
+                  Jan 2023
+                </p>
+              </div>
+            </div>
+            
+            <form method="post" action="/metro/feedback_check/">{% csrf_token %}  
+              <div class="form-group">
+                <input type="email" class="form-control" id="emailAddress" name = "Email" placeholder="Email ID" required>
+              </div>
+              <div class="form-group">
+                  <input type="Number" class="form-control" id="contactNumber" name = "rev_stars" placeholder="Review Stars" required>
+              </div>
+             
+
+          </div>
+          <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+            <div class="d-flex flex-start w-100">
+              <div class="form-outline w-100">
+                  <label class="form-label" for="textAreaExample">Your Feedback</label>
+                <textarea class="form-control" id="textAreaExample" name = "message" rows="4"
+                  style="background: #fff;" required></textarea>
+              </div>
+            </div>
+            <div class="float-end mt-2 pt-1">
+              <button type="submit" class="btn btn-primary btn-sm">Send</button>
+          
+              <button type="button" class="btn btn-outline-primary btn-sm" onclick="history.back()">Cancel</button>
+            <br>
+{% if messages %}
+{% for message in messages %}
+{{message}}
+{% endfor %}
+{% endif %}
+<br> 
+ </form> 
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock  %}

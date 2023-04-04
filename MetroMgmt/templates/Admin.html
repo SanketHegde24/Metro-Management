@@ -1,0 +1,790 @@
+{% extends "../templates/Basic.html" %}
+{% load static %}
+{% block title %} Admin {% endblock  %}
+
+{% block link %}
+{% comment %} <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> {% endcomment %}
+{% comment %} <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> {% endcomment %}
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+{% endblock  %}
+
+{% block css %}
+    .Loginbtn a{
+        display : none;
+    }
+    navbar-nav.nav-item.Contactbtn {
+        display : none;
+    }
+    {% comment %} .navbar {
+        border-radius : 0px;
+        margin-bottom : 0px;
+    }
+    .navbar-brand {
+        font-size : 20px;
+    }
+    .navbar-nav > li > a {
+        font-size : 16px;
+    }
+    .navbar {
+        padding : 0px;
+    }
+    .navbar-collapse.collapse {
+        display : none;
+    } {% endcomment %}
+
+    {% comment %} Edited ^ {% endcomment %}
+
+
+    body {
+        overflow-x: hidden;
+    }
+    
+    {% comment %} /* Toggle Styles */ {% endcomment %}
+    
+    #wrapper {
+        padding-left: 0;
+        -webkit-transition: all 0.6s ease;
+        -moz-transition: all 0.6s ease;
+        -o-transition: all 0.6s ease;
+        transition: all 0.6s ease;
+        
+    }
+    
+    #wrapper.toggled {
+        padding-left: 200px;
+    }
+    
+    #sidebar-wrapper {
+        z-index: 1000;
+        position: fixed;
+        left: 250px;
+        
+        width: 0;
+        height: 100%;
+        margin-left: -250px;
+        overflow-y: auto;
+        background-color:#312A25 !Important;
+    
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    }
+    
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+    
+    #page-content-wrapper {
+        width: 100%;
+        position: absolute;
+        padding: 10px;
+    }
+    
+    #wrapper.toggled #page-content-wrapper {
+        position: absolute;
+        margin-left:-250px;
+    }
+    
+    {% comment %} /* Sidebar Styles */ {% endcomment %}
+    
+    .sidebar-nav {
+        position: absolute;
+        top: 0;
+        right:15px;
+        width: 200px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    .sidebar-nav li {
+        text-indent: 20px;
+        line-height: 40px;
+    }
+    
+    .sidebar-nav li a {
+        {% comment %} display: block; {% endcomment %}
+        text-decoration: none;
+        color: #999999;
+    }
+    
+    .sidebar-nav li a:hover {
+        text-decoration: none;
+        color: #fff;
+        background: #312A25;
+    }
+    
+    .sidebar-nav li a:active,
+    .sidebar-nav li a:focus {
+        text-decoration: none;
+    }
+    
+    .sidebar-nav > .sidebar-brand {
+        height: 65px;
+        font-size: 18px;
+        line-height: 60px;
+    }
+    
+    .sidebar-nav > .sidebar-brand a {
+        color: #999999;
+    }
+    
+    .sidebar-nav > .sidebar-brand a:hover {
+        color: #fff;
+        background: none;
+    }
+    
+    @media(min-width:768px) {
+        #wrapper {
+            padding-left: 220px;
+        }
+    
+        #wrapper.toggled {
+            padding-left: 0;
+        }
+    
+        #sidebar-wrapper {
+            width: 200px;
+        }
+    
+        #wrapper.toggled #sidebar-wrapper {
+            width: 50px;
+            
+            
+        }
+    
+        #wrapper.toggled span {
+                visibility:hidden;
+                
+            }
+        #wrapper.toggled   i {
+        float:right;
+    } 
+    
+        #page-content-wrapper {
+            padding: 20px;
+            position: relative;
+        }
+    
+        #wrapper.toggled #page-content-wrapper {
+            position: relative;
+            margin-right: 0;
+        }
+    }
+    
+    
+    @media(max-width:414px) {
+    
+        #wrapper.toggled #page-content-wrapper {
+            position: absolute;
+            margin-right:60px;
+        }
+        
+        #wrapper.toggled {
+            padding-right: 60px;
+        }
+        
+        #wrapper {
+            padding-left: 20px;
+        }
+    
+        #wrapper.toggled {
+            padding-left: 0;
+        }
+    
+        #sidebar-wrapper {
+            width: 50px;
+        }
+    
+        #wrapper.toggled #sidebar-wrapper {
+            width: 140px;
+            
+            
+        }
+        
+        #wrapper.toggled span {
+            visibility:visible;
+            position:relative;
+            left:70px;
+            bottom:13px;
+            
+        }
+    
+
+        #wrapper span {
+                visibility:hidden;
+                
+            }
+        #wrapper.toggled   i {
+        float:right;
+        } 
+        
+        #wrapper   i {
+        float:right;
+        } 
+        #page-content-wrapper {
+            padding: 5px;
+            position: relative;
+        }
+    
+        #wrapper.toggled #page-content-wrapper {
+            position: relative;
+            margin-right: 0;
+        }
+    }
+    .card {
+        margin : auto;
+        padding : 10px;
+        margin-bottom : 30px;
+        margin-top : 30px;
+    }
+
+    {% comment %} .navbar-collapse.collapse {
+        display : none;
+    } {% endcomment %}
+{% comment %} 
+    div.hidden{
+        display: none;
+    } {% endcomment %}
+    .modal-backdrop {
+        z-index: 1;
+    }
+
+    label {
+        margin-bottom: 0px;
+        display: block;
+    }
+    .material-symbols-outlined {
+        line-height: inherit;
+    }
+    {% comment %} custom-control-input {
+        line-height: 0px;
+    } {% endcomment %}
+
+    .newfade{
+        background-color: #000000
+        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(4px);
+    }
+
+    {% comment %} Snackbar {% endcomment %}
+    #snackbar {
+        visibility: hidden;
+        min-width: 250px;
+        margin-left: -125px;
+        {% comment %} margin: auto; {% endcomment %}
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 2px;
+        padding: 16px;
+        position: fixed;
+        z-index: 1000;
+        left: 42%;
+        bottom: 30px;
+        font-size: 17px;
+      }
+      
+      #snackbar.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      }
+      
+      @-webkit-keyframes fadein {
+        from {bottom: 0; opacity: 0;} 
+        to {bottom: 30px; opacity: 1;}
+      }
+      
+      @keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+      }
+      
+      @-webkit-keyframes fadeout {
+        from {bottom: 30px; opacity: 1;} 
+        to {bottom: 0; opacity: 0;}
+      }
+      
+      @keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+      }
+
+    
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">   
+        <div id="wrapper">
+        
+        <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav" style="margin-left:0;">
+                    <li class="sidebar-brand">
+                        <a href="#menu-toggle"  id="menu-toggle" style="float:right;" > <i class="material-icons" style="font-size:20px !Important; padding-top: 20px;" aria-hidden="true" aria-hidden="true">menu</i>   
+                    </li>
+                    <li>
+                        <a href="#" onclick="myFunction()" data-toggle="modal" data-target="#AddStationModal"><i class="material-icons"> add </i> <span style="margin-left:10px; vertical-align : super;">Add Station</span>  </a>
+                        <div class="modal fade" id="AddStationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <form method="post" action="/metro/add_station/">{% csrf_token %}
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Add Station</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {% comment %} ... {% endcomment %}
+                                            <div class="AddStation">
+                                                <label for="exampleInputEmail1">Station Name</label>
+                                                <input type="text" class="form-control" name="AddStationName"  placeholder="Enter Station Name">
+                                            </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary" >Save changes</button>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" onclick="myFunction()" data-toggle="modal" data-target="#DeleteStationModal"> <i class="material-symbols-outlined" aria-hidden="true"> delete </i> <span style="margin-left:10px; vertical-align : super;"> Delete Station</span> </a>
+                        <div class="modal fade" id="DeleteStationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Delete Station</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% comment %} ... {% endcomment %}
+                                        <div class="RemoveStation">
+                                            {% comment %} <p class="card-title text-center shadow mb-5 rounded">Complaints</p> {% endcomment %}
+                                            <table class="table table-hover table-sm">
+                                                <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for st in StationObj %}
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>{{ st.s_name }}</td>
+                                                        <td>{{ st.station_id }}</td>
+                                                        <td><a href="/metro/delete_station/{{ st.station_id }}" data-toggle="" data-target="#" > <i class="material-symbols-outlined"  aria-hidden="true" style="color:red"> delete </i> </a></td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        {% comment %} <button type="button" class="btn btn-primary">Save changes</button> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" onclick="myFunction()" data-toggle="modal" data-target="#AddUserModal"> <i class="material-icons" aria-hidden="true"> person_add</i> <span style="margin-left:10px; vertical-align : super;"> Add User </span> </a>
+                        <div class="modal fade" id="AddUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <form method="post" action="/metro/add_user/">{% csrf_token %}
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Add User</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {% comment %} ... {% endcomment %}
+                                            <div class="AddUser">
+                                                <label for="exampleInputEmail1">User Name</label>
+                                                <input type="text" class="form-control" name="AddUserName"  placeholder="Enter username" required>
+                                                <label for="exampleInputEmail1">Email</label>
+                                                <input type="email" class="form-control" name="AddUserEmail"  placeholder="Enter email">
+                                                <label for="exampleInputEmail1">Phone Number</label>
+                                                <input type="phone2numeric" class="form-control" name="AddUserNumber"  placeholder="Enter phonenumber" required>
+                                                <label for="exampleInputEmail1">Password</label>
+                                                <input type="password" class="form-control" name="AddUserPassword"  placeholder="Enter password" required>
+                                                <label for="exampleInputEmail1">Repeat Password</label>
+                                                <input type="password" class="form-control" id="AddUserPasswordReenter"  placeholder="Re-enter password" required>
+                                            </div>
+                                        </div>
+                                        {% if messages %}
+                                        {% for message in messages %}
+                                        {{message}}
+                                        {% endfor %}
+                                        {% endif %} 
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary" >Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" onclick="myFunction()" data-toggle="modal" data-target="#RemoveUserModal"> <i class="material-icons" aria-hidden="true"> person_remove</i> <span style="margin-left:10px; vertical-align : super;"> Remove User</span> </a>
+                        <div class="modal fade" id="RemoveUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Remove User</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% comment %} ... {% endcomment %}
+                                        <div class="RemoveUser">
+                                            {% comment %} <p class="card-title text-center shadow mb-5 rounded">Complaints</p> {% endcomment %}
+                                            <table class="table table-hover table-sm">
+                                                <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Contact</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for usr in UserObj %}
+                                                    {% if usr.admin == 0 %}
+                                                    <tr>
+                                                        {% comment %} {% CntObj += 1 %} {% endcomment %}
+                                                        {% comment %} <th scope="row">{{  }}</th> {% endcomment %}
+                                                        {% comment %} <th scope="row">{% print(UserObj.index(usr)) %}</th> {% endcomment %}
+                                                        <th scope="row">1</th>
+                                                        <td>{{ usr.username }}</td>
+                                                        <td>{{ usr.mno }}</td>
+                                                        <td>{{ usr.email }}</td>
+                                                        <td><a href="/metro/delete_user/{{ usr.username }}" data-toggle="" data-target="#" > <i class="material-symbols-outlined"  aria-hidden="true" style="color:red"> delete </i> </a></td>
+                                                    </tr>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        {% comment %} <button type="button" class="btn btn-primary">Save changes</button> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" onclick="myFunction()" data-toggle="modal" data-target="#AddAdminModal"><i class="material-symbols-outlined" aria-hidden="true"> group_add</i> <span style="margin-left:10px; vertical-align : super;"> Add Admin </span> </a>
+                        <div class="modal fade" id="AddAdminModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <form method="post" action="/metro/add_admin/">{% csrf_token %}
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Add Admin</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {% comment %} ... {% endcomment %}
+                                            <div class="AddUser">
+                                                <label for="exampleInputEmail1">Admin Name</label>
+                                                <input type="text" class="form-control" name="AddAdminName"  placeholder="Enter admin-name">
+                                                <label for="exampleInputEmail1">Email</label>
+                                                <input type="email" class="form-control" name="AddAdminEmail"  placeholder="Enter email">
+                                                <label for="exampleInputEmail1">Phone Number</label>
+                                                <input type="phone2numeric" class="form-control" name="AddAdminNumber"  placeholder="Enter phonenumber">
+                                                <label for="exampleInputEmail1">Password</label>
+                                                <input type="password" class="form-control" name="AddAdminPassword"  placeholder="Enter password">
+                                                <label for="exampleInputEmail1">Repeat Password</label>
+                                                <input type="password" class="form-control" name="AddAdminPasswordReenter"  placeholder="Re-enter password">
+                                            </div>
+                                        </div>
+                                        {% if messages %}
+                                        {% for message in messages %}
+                                        {{message}}
+                                        {% endfor %}
+                                        {% endif %} 
+                                        <div class="modal-footer">       
+                                    
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" onclick="myFunction()" data-toggle="modal" data-target="#RemoveAdminModal"> <i class="material-symbols-outlined" aria-hidden="true"> group_remove</i> <span style="margin-left:10px; vertical-align : super;"> Remove Admin </span> </a>
+                        <div class="modal fade" id="RemoveAdminModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Remove Admin</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% comment %} ... {% endcomment %}
+                                        <div class="RemoveAdmin">
+                                            {% comment %} <p class="card-title text-center shadow mb-5 rounded">Complaints</p> {% endcomment %}
+                                            <table class="table table-hover table-sm">
+                                                <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Contact</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for usr in UserObj %}
+                                                    {% if usr.admin == 1 %}
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>{{ usr.username }}</td>
+                                                        <td>{{ usr.mno }}</td>
+                                                        <td>{{ usr.email }}</td>
+                                                        <td><a href="/metro/delete_admin/{{ usr.username }}" data-toggle="" data-target="#" > <i class="material-symbols-outlined"  aria-hidden="true" style="color:red"> delete </i> </a></td>
+                                                    </tr>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        {% comment %} <button type="button" class="btn btn-primary">Save changes</button> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% comment %} <form method="post" action="/metro/user_check/">{% csrf_token %}
+                        <li> <button type="submit" class="btn btn-success" style = "margin-left: 40px; margin-top: 20px;">User View</button> </li>
+                    </form> {% endcomment %}
+                </ul>
+            </div>
+            <script>
+            $("#menu-toggle").click(function(e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+            </script>
+
+        </div>
+    </div>
+</div>
+
+<!--Body Contents-->
+
+    <div class="card" style="width: 30rem;">
+        {% comment %} <img class="card-img-top" src="..." alt="Card image cap"> {% endcomment %}
+        <div class="card-body">
+        <h5 class="card-title"> Feedback</h5>
+        <p class="card-text">Some helpful advices and experience of the users</p>
+        {% comment %} <a href="#" class="btn btn-primary">Feedback Table</a> {% endcomment %}
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FeedbackModal" >
+            Feedback Table
+          </button>
+          {% comment %} <div id="snackbar">Station added successfully!</div> {% endcomment %}
+    
+        <!-- Modal -->
+        <div class="modal fade" id="FeedbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+              <div class="modal-content" style = "width : auto;">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Feedbacks</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" >
+                  {% comment %} ... {% endcomment %}
+
+                  <div class="complaints">
+                    {% comment %} <p class="card-title text-center shadow mb-5 rounded">Complaints</p> {% endcomment %}
+                    <table class="table table-hover table-sm">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Review Stars</th>
+                            <th scope="col">Message</th>
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for fb in feedbackObj %}
+                            <tr>
+                                {% comment %} {{ print('hello') }} {% endcomment %}
+                                <th scope="row">1</th>
+                                <td>{{ fb.username }}</td>
+                                <td>{{ fb.email }}</td>
+                                <td>{{ fb.rev_stars }}</td>
+                                <td>{{ fb.message }}</td>
+                                {% comment %} <td><a  data-toggle="modal" data-target="#MessageView" > <button type="button" class="btn btn-primary" >View</button> </a></td> {% endcomment %}
+                                
+                                {% comment %} <div class="modal newfade" id="MessageView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <form method="post" action="">
+                                        <div class="modal-dialog " role="document">
+                                            <div class="modal-content">
+                                                
+                                                <div class="modal-body">
+                                                    {{ fb.username }}
+                                                    
+                                                </div>
+                                        </div>
+                                    </form>
+                                </div> {% endcomment %}
+                                
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  {% comment %} <button type="button" class="btn btn-primary">Save changes</button> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+    
+    <div class="card" style="width: 30rem;">
+    {% comment %} <img class="card-img-top" src="..." alt="Card image cap"> {% endcomment %}
+    <div class="card-body">
+        <h5 class="card-title">Complaint</h5>
+        <p class="card-text">Some bugs, issues and support required</p>
+        
+        
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ComplaintModal">
+            Complaint Table
+          </button>
+    
+        <!-- Modal -->
+        <div class="modal fade" id="ComplaintModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+              <div class="modal-content" style = "width : auto;">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Complaints</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  {% comment %} ... {% endcomment %}
+
+                  <div class="complaints">
+                    {% comment %} <p class="card-title text-center shadow mb-5 rounded">Complaints</p> {% endcomment %}
+                    <table class="table table-hover table-sm">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Contact</th>
+                                <th scope="col">Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for hp in HelpObj %}
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>{{hp.username}}</td>
+                                <td>{{hp.email}}</td>
+                                <td>{{hp.contact}}</td>
+                                <td>{{hp.message}}</td>
+                                {% comment %} <td><a  data-toggle="modal" data-target="#MessageViewComplaint" > <button type="button" class="btn btn-primary" >View</button> </a></td> {% endcomment %}
+                                
+                                {% comment %} <div class="modal newfade" id="MessageViewComplaint" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <form method="post" action="">
+                                        <div class="modal-dialog " role="document">
+                                            <div class="modal-content">
+                                                
+                                                <div class="modal-body">
+                                                    {{ hp.message }}
+                                                    {{ hp.image}}
+                                                
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div> {% endcomment %}
+                                
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  {% comment %} <button type="button" class="btn btn-primary">Save changes</button> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    </div>
+</div>
+<div id="snackbar">Caution!!! Your action may affect the contents of database</div>
+<script>
+    function myFunction() {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+      
+        // Add the "show" class to DIV
+        x.className = "show";
+      
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+      }
+  </script>
+{% endblock  %}
+
+
+{% comment %} <Button variant="outlined" onClick={handleClick}>
+    Open success snackbar
+  </Button> {% endcomment %}
+  

@@ -1,0 +1,86 @@
+{% extends 'Basic.html' %}
+
+{% block title %} Help {% endblock  %}
+
+{% block css %}
+.Loginbtn a{
+  display : none;
+}
+.nav-link {
+  display: none;
+}
+.body {
+  background-color: #eee;
+}
+.card-body {
+  align-items: center;
+  padding-bottom: 0%;
+}
+.form-label {
+  font-weight: bold;
+}
+.card {
+  width: 600px;
+}
+.d-flex {
+  margin-bottom: 15px;
+  {% comment %} /* margin-top: 10px; */
+  /* align-self: center; */ {% endcomment %}
+}
+.screenshot {
+  text-align: left;
+  float: left;
+}
+{% endblock  %}
+
+{% block body %}
+<section>
+  <div class="container my-5 py-5">
+    <div class="row d-flex justify-content-center">
+      <div>
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-start align-items-center" style="margin-left: 10pt">
+              <img class="rounded-circle shadow-1-strong me-3"
+                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="avatar" width="60"
+                height="60" />
+              <div style="margin-left: 10pt">
+                <h6 class="fw-bold text-primary mb-1">{{request.user.username}}</h6>
+                <p class="text-muted small mb-0">
+                  Jan 2020
+                </p>
+              </div>
+            </div>
+            
+            <form method="post" action="/metro/help_check/">{% csrf_token %}
+              <div class="form-group">
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email address" name = "Email" required>
+              </div>
+              <div class="form-group">
+                  <input type="phone" class="form-control" id="exampleFormControlInput1" placeholder="Contact Number" name = "Contact" required>
+              {% comment %} </div>
+                <div class="form-group">
+                  <label class="screenshot" for="exampleFormControlFile1">Related ScreenShots of the Issue</label>
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1" name = "Image">
+                </div>
+              </div> {% endcomment %}
+              <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                <div class="d-flex flex-start w-100">
+                  <div class="form-outline w-100">
+                    <label class="form-label" for="textAreaExample">Detailed Information</label>
+                    <textarea class="form-control" id="textAreaExample" rows="4" style="background: #fff;" name = "message" required></textarea>
+                  </div>
+                </div>
+                <div class="float-end mt-2 pt-1">
+                  <button type="submit" class="btn btn-primary btn-sm">Send</button>
+                  <button type="button" class="btn btn-outline-primary btn-sm" onclick="history.back()">Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock  %}

@@ -1,0 +1,228 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%} basic {% endblock %}</title>
+    {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> {% endcomment %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {% block link %}  {% endblock  %}
+  </head>
+
+<style>
+  .Loginbtn a{
+    border-color : #fff
+  }
+  .Logoutbtn a{
+    border-color : #fff
+  }
+  * {
+    margin = 0;
+    padding = 0;
+    box-sizing = border-box;
+  }
+
+  body {
+    background-color: #d2daf2;
+    font-family: 'Segoe UI';
+  }
+  nav{
+    box-shadow:2px 6px 8px 0 rgb(0 0 0 / 33%);
+    background-color: #216efa;
+    color: white;
+  }
+  
+    .icons{
+      margin:auto!important;
+    
+    }
+    
+
+    
+    @media only screen and (max-width: 600px) {
+      .card{
+        margin:auto;
+        border:solid 1px #dbdad7;
+        width:90%;
+        padding-left:10px!important;
+        padding-bottom:10px!important;
+        padding-right:10px!important;
+        padding-top: 0px!important;
+      
+      }
+    }
+    
+      .fa{
+        border-radius: 25px;
+        width: 15%;
+        margin-left: 5%;
+        border:solid 2px #dbdad7;
+        margin-top:5%;
+        text-align: center;
+      }
+
+      {% comment %} Footer {% endcomment %}
+      
+
+    .footer {
+      padding: 40px 0;
+      background-color: #fff;
+      {% comment %} position : fixed; {% endcomment %}
+      width : 100vw;
+    }
+
+    .footer .social {
+      text-align: center;
+      padding-bottom: 25px;
+      colour: #4b4c4d
+    }
+
+    .footer .social a {
+      font-size: 24px;
+      color: inherit;
+      border: 1px solid #ccc;
+      width: 40px;
+      height: 40px;
+      line-height: 38px;
+      display: inline-block;
+      text-align: center;
+      border-radius: 50%;
+      margin: 0 8px;
+      opacity: 0.75;
+    }
+
+    .footer .social a:hover {
+      opacity: 0.9;
+    }
+
+    .footer ul {
+      margin-top: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 0;
+      text-align: center;
+    }
+
+    .footer ul li a {
+      color: inherit;
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
+    .footer ul li {
+      display: inline-block;
+      padding: 0 15px;
+    }
+
+    .footer ul li a:hover {
+      opacity: 1;
+    }
+
+    .footer .copyright {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    {% block css %}  {% endblock  %}
+
+</style>
+<body>
+    <!-- <div class="Header">  NAVIGATION BAR -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="http://127.0.0.1:8000/metro">SuperMetro</a>    <!--BRAND NAME-->
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                    <a class="nav-link" href="/metro">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    {% comment %} <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                    </li> {% endcomment %}
+                    <li class="nav-item dropdown">
+                      <div class"Contactbtn">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Contact
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/metro/help_check">Help</a>
+                            <a class="dropdown-item" href="/metro/feedback_check">Feedback</a>
+                            <!-- <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a> -->
+                        </div>
+                      </div>
+                    </li>
+                    {% comment %} <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                    </li> {% endcomment %}
+                </ul> 
+                <div class = "Loginbtn" >
+                  <a href="/metro/login_check" class="btn btn-success">
+                    Login
+                  </a>
+                </div>
+                <div class = "Logoutbtn" >
+                  <a href="/metro/" class="btn btn-danger">
+                    Logout
+                  </a>
+                </div>
+            </div>
+        </nav>
+    
+    {% block body %} {% endblock  %}
+    
+    {% comment %} Footer {% endcomment %}
+
+    <footer class="footer" >
+      <div class = "social">
+        <a href="https://www.instagram.com/nammametro/?hl=en"><i class="fab fa-instagram"></i> </a>
+        <a href="https://www.facebook.com/nammabangaloremetro/"><i class="fab fa-facebook"></i> </a>
+        <a href="https://twitter.com/cpronammametro"><i class="fab fa-twitter"></i> </a>
+        <a href="https://in.linkedin.com/company/bangaloremetrorailcorporationlimited?original_referer=https%3A%2F%2Fwww.google.com%2F"><i class="fab fa-linkedin"></i> </a>
+      </div>
+
+      <ul class ="list">
+        <li>
+          <a href="/metro">Home</a>
+        </li>
+        <li>
+          <a href="#">Service</a>
+        </li>
+        <li>
+          <a href="/metro">About</a>
+        </li>
+        <li>
+          <a href="#">Terms</a>
+        </li>
+        <li>
+          <a href="#">Privacy Policy</a>
+        </li>
+      </ul>
+      <p class="copyright">
+        SuperMetro @ 2023
+      </p>
+    </footer>
+
+
+
+
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {% block js %}  {% endblock  %}
+</body>
+</html>

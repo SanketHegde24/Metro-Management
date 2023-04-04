@@ -1,0 +1,64 @@
+{% extends 'Basic.html' %}
+
+{% block title %} SuperMetro {% endblock  %}  
+
+{% block css %}
+.Logoutbtn a{
+  display : none;
+}
+.card1 {
+    height: min-content;
+    width: 75%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 100px;
+    border-radius: 5px;
+    background-color: white;
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  /* Add some padding inside the card container */
+  .container {
+    text-align: center;
+    padding: 2px 16px;
+  }
+{% endblock  %}
+
+{% block body %}
+    <!-- <div class="Main">     Description -->
+        <div class="card1" style = "height: min-content;
+        width: 75%;
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 100px;
+        border-radius: 5px;
+        background-color: white;
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;">
+            <div class="container" style = "
+                text-align: center;
+                padding: 2px 16px;
+              ">
+                <h4><b>Description</b></h4>
+                <p>Welcome to Super Metro
+Rail Corporation Limited , a joint venture of Government of India and Government of Karnataka is a Special Purpose Vehicle entrusted with the responsibility of implementation of Bangalore Metro Rail Project.
+
+Bangalore Metro, christened as "Super Metro", not only adds to the beauty of our City's skyline, but immensely adds to the comfort level of travel. Besides this, Super Metro is a major environment friendly addition to the our City as it significantly contributes to the reduction of carbon emissions.</p>
+                <a href="/metro/register_check" class="btn btn-primary">
+                    Register
+                </a>
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}
