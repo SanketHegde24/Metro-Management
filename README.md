@@ -19,7 +19,10 @@ Website Management: Admins can update or delete content on the website, ensuring
 Technology Stack:
 
 Django: The core framework that powers the application, providing a robust structure and seamless integration between different components.
+
 HTML and CSS: Used to design and style the user interface, ensuring an intuitive and visually appealing experience.
+
 MySQL: The database management system chosen to store user information, ticket data, and feedback.
+
 Impact:
 The Metro Management System aims to streamline the ticketing process, enhance user satisfaction, and facilitate efficient administrative control. By providing a user-friendly interface and enabling quick access to ticketing and feedback submission, the system contributes to a smoother commuting experience.
